@@ -40,12 +40,12 @@ $(addprefix $(DEST)/, $(MAIN_TARGET)): $(DEST)/% :
 	fakeroot make -f debian/rules.gen setup_amd64_none_amd64
 
 	# Applying patches and configuration changes
-	# git init
-	# git add -f *
-	# git add debian/build/build_amd64_none_amd64/.config -f
-	# git commit -m "unmodified debian source"
-	# stg init
-	# stg import -s ../patch/series
+	git init
+	git add -f *
+	git add debian/build/build_amd64_none_amd64/.config -f
+	git commit -m "unmodified debian source"
+	stg init
+	stg import -s ../patch/series
 
 	# Building a custom kernel from Debian kernel source
 	DO_DOCS=False fakeroot make -f debian/rules -j $(shell nproc) binary-indep
