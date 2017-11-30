@@ -14,7 +14,7 @@ DERIVED_TARGETS = linux-headers-$(KVERSION)_$(KERNEL_VERSION)-$(KERNEL_SUBVERSIO
 DSC_FILE = linux_$(KERNEL_VERSION)-$(KERNEL_SUBVERSION).dsc
 ORIG_FILE = linux_$(KERNEL_VERSION).orig.tar.xz
 DEBIAN_FILE = linux_$(KERNEL_VERSION)-$(KERNEL_SUBVERSION).debian.tar.xz
-URL = http://security.debian.org/debian-security/pool/updates/main/l/linux
+URL = http://security.debian.org/debian-security/pool/updates/main/l/linuxa
 BUILD_DIR=linux-$(KERNEL_VERSION)
 
 DSC_FILE_URL = "$(URL)/$(DSC_FILE)"
