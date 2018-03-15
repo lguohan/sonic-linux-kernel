@@ -2,10 +2,10 @@
 SHELL = /bin/bash
 .SHELLFLAGS += -e
 
-KVERSION_SHORT ?= 4.9.0-3
+KVERSION_SHORT ?= 4.9.0-5
 KVERSION ?= $(KVERSION_SHORT)-amd64
-KERNEL_VERSION ?= 4.9.30
-KERNEL_SUBVERSION ?= 2+deb9u5
+KERNEL_VERSION ?= 4.9.65
+KERNEL_SUBVERSION ?= 3+deb9u2
 
 MAIN_TARGET = linux-headers-$(KVERSION_SHORT)-common_$(KERNEL_VERSION)-$(KERNEL_SUBVERSION)_all.deb
 DERIVED_TARGETS = linux-headers-$(KVERSION)_$(KERNEL_VERSION)-$(KERNEL_SUBVERSION)_amd64.deb \
@@ -31,8 +31,11 @@ $(addprefix $(DEST)/, $(MAIN_TARGET)): $(DEST)/% :
 	dpkg-source -x $(DSC_FILE)
 
 	pushd $(BUILD_DIR)
+	git init
+	git add -f *
+
 	# patch debian changelog and update kernel package version
-	# patch -p0 < ../patch/changelog.patch
+	# git am ../patch/changelog.patch
 
 	# re-generate debian/rules.gen, requires kernel-wedge
 	# debian/bin/gencontrol.py
@@ -41,8 +44,6 @@ $(addprefix $(DEST)/, $(MAIN_TARGET)): $(DEST)/% :
 	fakeroot make -f debian/rules.gen setup_amd64_none_amd64
 
 	# Applying patches and configuration changes
-	git init
-	git add -f *
 	git add debian/build/build_amd64_none_amd64/.config -f
 	git commit -m "unmodified debian source"
 	stg init
