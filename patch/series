@@ -92,8 +92,6 @@ config-cig-cs6436-serail_new.patch
 # 0042-armhf-additional-configs.patch
 # 0042-armhf-proc-dma-kconfig.patch
 net-psample-fix-skb-over-panic.patch
-# (Broadcom)
-# 0000-net-ipv6-ll-anycast-mcast-routes-on-dev.patch
 net-backport-ipv6-missing-route.patch
 # (Broadcom)
 # Support-for-fullcone-nat.patch
